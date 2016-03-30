@@ -1,0 +1,36 @@
+digraph Architecture {
+  node[fontsize=12, height=0.35, fontname=Helvetica, shape=rect];
+  fontname=Helvetica;
+
+  subgraph cluster_your_app {
+    color=white;
+    node[fillcolor="#DDDDFF", style=filled];
+
+    client[label="Instrumented client"];
+    uninstrumented_server[label="Non-instrumented server"];
+    instrumented_server[label="Instrumented server"];
+
+    client -> instrumented_server;
+    client -> uninstrumented_server;
+  }
+  
+  subgraph cluster_zipkin {
+    label=Zipkin;
+    style=dotted;
+    node[fillcolor="#C3FF68", style=filled];
+
+
+    transport[label=Transport];
+    storage[label=Storage];
+    api[label=API];
+    ui[label=UI];
+
+    transport -> storage;
+    ui -> api;
+    api -> storage;
+  }
+
+  instrumented_server -> transport [color="#7ED0D6"];
+  client -> transport [color="#7ED0D6"];
+
+}
