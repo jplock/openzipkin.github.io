@@ -13,24 +13,27 @@ digraph Architecture {
     client -> instrumented_server;
     client -> uninstrumented_server;
   }
+
+  transport [label=Transport];
   
   subgraph cluster_zipkin {
     label=Zipkin;
     style=dotted;
     node[fillcolor="#C3FF68", style=filled];
 
-
-    transport[label=Transport];
+    receiver[label=Receiver];
     storage[label=Storage];
     api[label=API];
     ui[label=UI];
 
-    transport -> storage;
+    receiver -> storage;
+    
     ui -> api;
     api -> storage;
   }
 
   instrumented_server -> transport [color="#7ED0D6"];
   client -> transport [color="#7ED0D6"];
+  transport -> receiver;
 
 }
