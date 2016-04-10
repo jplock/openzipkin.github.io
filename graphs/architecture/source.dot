@@ -6,9 +6,9 @@ digraph Architecture {
     color=white;
     node[fillcolor="#DDDDFF", style=filled];
 
-    client[label="Instrumented client"];
+    client[label="Instrumented client\n(Reporter)"];
     uninstrumented_server[label="Non-instrumented server"];
-    instrumented_server[label="Instrumented server"];
+    instrumented_server[label="Instrumented server\n(Reporter)"];
 
     client -> instrumented_server;
     client -> uninstrumented_server;
@@ -23,10 +23,12 @@ digraph Architecture {
 
     receiver[label=Receiver];
     storage[label=Storage];
+	database[label=Database];
     api[label=API];
     ui[label=UI];
 
     receiver -> storage;
+	storage -> database;
     
     ui -> api;
     api -> storage;
