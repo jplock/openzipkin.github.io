@@ -30,8 +30,8 @@ digraph Architecture {
     receiver -> storage;
 	storage -> database;
     
-    ui -> api;
-    api -> storage;
+	api -> storage [dir=back];
+	ui -> api [dir=back];
   }
 
   instrumented_server -> transport [color="#7ED0D6"];
