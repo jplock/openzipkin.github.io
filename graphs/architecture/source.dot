@@ -6,9 +6,9 @@ digraph Architecture {
     color=white;
     node[fillcolor="#DDDDFF", style=filled];
 
-    client[label="Instrumented client\n(Reporter)"];
+    client[label="Instrumented client\n(Recorder)"];
     uninstrumented_server[label="Non-instrumented server"];
-    instrumented_server[label="Instrumented server\n(Reporter)"];
+    instrumented_server[label="Instrumented server\n(Recorder)"];
 
     client -> instrumented_server;
     client -> uninstrumented_server;
@@ -18,24 +18,25 @@ digraph Architecture {
   
   subgraph cluster_zipkin {
     label=Zipkin;
-    style=dotted;
+    style=dashed;
     node[fillcolor="#C3FF68", style=filled];
 
-    receiver[label=Receiver];
+    colelctor[label=Collector];
     storage[label=Storage];
-	database[label=Database];
     api[label=API];
     ui[label=UI];
 
-    receiver -> storage;
-	storage -> database;
+    colelctor -> storage;
     
 	api -> storage [dir=back];
 	ui -> api [dir=back];
   }
 
+  database[label=Database];
+  storage -> database [style=dotted];
+
   instrumented_server -> transport [color="#7ED0D6"];
   client -> transport [color="#7ED0D6"];
-  transport -> receiver;
+  transport -> colelctor;
 
 }
