@@ -6,9 +6,9 @@ digraph Architecture {
     color=white;
     node[fillcolor="#DDDDFF", style=filled];
 
-    client[label="Instrumented client\n(Recorder)"];
+    client[label="Instrumented client\n(Reporter)"];
     uninstrumented_server[label="Non-instrumented server"];
-    instrumented_server[label="Instrumented server\n(Recorder)"];
+    instrumented_server[label="Instrumented server\n(Reporter)"];
 
     client -> instrumented_server;
     client -> uninstrumented_server;
@@ -37,6 +37,6 @@ digraph Architecture {
 
   instrumented_server -> transport [color="#7ED0D6"];
   client -> transport [color="#7ED0D6"];
-  transport -> colelctor;
+  transport -> collector;
 
 }
