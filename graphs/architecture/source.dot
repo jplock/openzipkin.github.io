@@ -21,12 +21,12 @@ digraph Architecture {
     style=dashed;
     node[fillcolor="#C3FF68", style=filled];
 
-    colelctor[label=Collector];
+    collector[label=Collector];
     storage[label=Storage];
     api[label=API];
     ui[label=UI];
 
-    colelctor -> storage;
+    collector -> storage;
     
 	api -> storage [dir=back];
 	ui -> api [dir=back];
